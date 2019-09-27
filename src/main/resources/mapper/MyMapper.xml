@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atlan.ceer.mapper.MyMapper">
+    <update id="countIncreaseUserInf" parameterType="atlan.ceer.model.CountUserInf">
+        update user_inf
+        <set>
+            <if test="collectGoods != null">
+                collect_goods = collect_goods+1,
+            </if>
+            <if test="collectPost != null">
+                collect_post = collect_post+1,
+            </if>
+            <if test="countGoods != null">
+                count_goods = count_goods+1,
+            </if>
+            <if test="countNeeds != null">
+                count_needs = count_needs+1,
+            </if>
+            <if test="countLike != null">
+                count_like = count_like+1,
+            </if>
+            <if test="countPost != null">
+                count_post = count_post+1,
+            </if>
+            <if test="countFollow != null">
+                count_follow = count_follow+1,
+            </if>
+            <if test="countFans != null">
+                count_fans = count_fans+1,
+            </if>
+        </set>
+        where id_user=#{idUser}
+    </update>
+    <update id="countDecreaseUserInf" parameterType="atlan.ceer.model.CountUserInf">
+        update user_inf
+        <set>
+            <if test="collectGoods != null">
+                collect_goods = collect_goods-1,
+            </if>
+            <if test="collectPost != null">
+                collect_post = collect_post-1,
+            </if>
+            <if test="countGoods != null">
+                count_goods = count_goods-1,
+            </if>
+            <if test="countNeeds != null">
+                count_needs = count_needs-1,
+            </if>
+            <if test="countLike != null">
+                count_like = count_like-1,
+            </if>
+            <if test="countPost != null">
+                count_post = count_post-1,
+            </if>
+            <if test="countFollow != null">
+                count_follow = count_follow-1,
+            </if>
+            <if test="countFans != null">
+                count_fans = count_fans-1,
+            </if>
+        </set>
+        where id_user=#{idUser}
+    </update>
+    <update id="updateUserInf" parameterType="atlan.ceer.model.UserUpdate">
+        update user_inf
+        <set>
+            <if test="avatar != null">
+                avatar=#{avatar},
+            </if>
+            <if test="studentNum != null">
+                student_num=#{studentNum},
+            </if>
+            gmt_modified=#{modified}
+        </set>
+        where id_user=#{idUser}
+    </update>
+    <update id="updateUser" parameterType="atlan.ceer.model.UserUpdate">
+        update user
+        <set>
+            <if test="userName != null">
+                user_name=#{userName},
+            </if>
+            <if test="phone != null">
+                phone=#{phone},
+            </if>
+            <if test="password != null">
+                password=#{password},
+            </if>
+            gmt_modified=#{modified}
+        </set>
+        where id_user=#{idUser}
+    </update>
+</mapper>

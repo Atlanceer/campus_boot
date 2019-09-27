@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atlan.ceer.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="atlan.ceer.pojo.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_goods" jdbcType="CHAR" property="idGoods" />
+    <result column="id_user" jdbcType="VARCHAR" property="idUser" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
+    <result column="is_new" jdbcType="INTEGER" property="isNew" />
+    <result column="goods_location" jdbcType="VARCHAR" property="goodsLocation" />
+    <result column="goods_category" jdbcType="VARCHAR" property="goodsCategory" />
+    <result column="goods_images" jdbcType="VARCHAR" property="goodsImages" />
+    <result column="main_image" jdbcType="VARCHAR" property="mainImage" />
+    <result column="goods_des" jdbcType="VARCHAR" property="goodsDes" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="collected" jdbcType="INTEGER" property="collected" />
+    <result column="browsed" jdbcType="INTEGER" property="browsed" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="lever" jdbcType="INTEGER" property="lever" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="atlan.ceer.pojo.Goods">
+    <result column="goods_inf" jdbcType="LONGVARCHAR" property="goodsInf" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, id_goods, id_user, goods_name, goods_price, is_new, goods_location, goods_category, 
+    goods_images, main_image, goods_des, address, collected, browsed, status, tag, lever, 
+    gmt_create, gmt_modified
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_inf
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="atlan.ceer.pojo.GoodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="atlan.ceer.pojo.GoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="atlan.ceer.pojo.GoodsExample">
+    delete from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="atlan.ceer.pojo.Goods">
+    insert into goods (id, id_goods, id_user, 
+      goods_name, goods_price, is_new, 
+      goods_location, goods_category, goods_images, 
+      main_image, goods_des, address, 
+      collected, browsed, status, 
+      tag, lever, gmt_create, 
+      gmt_modified, goods_inf)
+    values (#{id,jdbcType=INTEGER}, #{idGoods,jdbcType=CHAR}, #{idUser,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DECIMAL}, #{isNew,jdbcType=INTEGER}, 
+      #{goodsLocation,jdbcType=VARCHAR}, #{goodsCategory,jdbcType=VARCHAR}, #{goodsImages,jdbcType=VARCHAR}, 
+      #{mainImage,jdbcType=VARCHAR}, #{goodsDes,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{collected,jdbcType=INTEGER}, #{browsed,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{tag,jdbcType=VARCHAR}, #{lever,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{goodsInf,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="atlan.ceer.pojo.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idGoods != null">
+        id_goods,
+      </if>
+      <if test="idUser != null">
+        id_user,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="isNew != null">
+        is_new,
+      </if>
+      <if test="goodsLocation != null">
+        goods_location,
+      </if>
+      <if test="goodsCategory != null">
+        goods_category,
+      </if>
+      <if test="goodsImages != null">
+        goods_images,
+      </if>
+      <if test="mainImage != null">
+        main_image,
+      </if>
+      <if test="goodsDes != null">
+        goods_des,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="collected != null">
+        collected,
+      </if>
+      <if test="browsed != null">
+        browsed,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="lever != null">
+        lever,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="goodsInf != null">
+        goods_inf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idGoods != null">
+        #{idGoods,jdbcType=CHAR},
+      </if>
+      <if test="idUser != null">
+        #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isNew != null">
+        #{isNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsLocation != null">
+        #{goodsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCategory != null">
+        #{goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImages != null">
+        #{goodsImages,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImage != null">
+        #{mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDes != null">
+        #{goodsDes,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="collected != null">
+        #{collected,jdbcType=INTEGER},
+      </if>
+      <if test="browsed != null">
+        #{browsed,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="lever != null">
+        #{lever,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInf != null">
+        #{goodsInf,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="atlan.ceer.pojo.GoodsExample" resultType="java.lang.Long">
+    select count(*) from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.idGoods != null">
+        id_goods = #{record.idGoods,jdbcType=CHAR},
+      </if>
+      <if test="record.idUser != null">
+        id_user = #{record.idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsPrice != null">
+        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isNew != null">
+        is_new = #{record.isNew,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsLocation != null">
+        goods_location = #{record.goodsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsCategory != null">
+        goods_category = #{record.goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsImages != null">
+        goods_images = #{record.goodsImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainImage != null">
+        main_image = #{record.mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDes != null">
+        goods_des = #{record.goodsDes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collected != null">
+        collected = #{record.collected,jdbcType=INTEGER},
+      </if>
+      <if test="record.browsed != null">
+        browsed = #{record.browsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.tag != null">
+        tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lever != null">
+        lever = #{record.lever,jdbcType=INTEGER},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsInf != null">
+        goods_inf = #{record.goodsInf,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update goods
+    set id = #{record.id,jdbcType=INTEGER},
+      id_goods = #{record.idGoods,jdbcType=CHAR},
+      id_user = #{record.idUser,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      is_new = #{record.isNew,jdbcType=INTEGER},
+      goods_location = #{record.goodsLocation,jdbcType=VARCHAR},
+      goods_category = #{record.goodsCategory,jdbcType=VARCHAR},
+      goods_images = #{record.goodsImages,jdbcType=VARCHAR},
+      main_image = #{record.mainImage,jdbcType=VARCHAR},
+      goods_des = #{record.goodsDes,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      collected = #{record.collected,jdbcType=INTEGER},
+      browsed = #{record.browsed,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      lever = #{record.lever,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      goods_inf = #{record.goodsInf,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods
+    set id = #{record.id,jdbcType=INTEGER},
+      id_goods = #{record.idGoods,jdbcType=CHAR},
+      id_user = #{record.idUser,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
+      is_new = #{record.isNew,jdbcType=INTEGER},
+      goods_location = #{record.goodsLocation,jdbcType=VARCHAR},
+      goods_category = #{record.goodsCategory,jdbcType=VARCHAR},
+      goods_images = #{record.goodsImages,jdbcType=VARCHAR},
+      main_image = #{record.mainImage,jdbcType=VARCHAR},
+      goods_des = #{record.goodsDes,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      collected = #{record.collected,jdbcType=INTEGER},
+      browsed = #{record.browsed,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      lever = #{record.lever,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="atlan.ceer.pojo.Goods">
+    update goods
+    <set>
+      <if test="idGoods != null">
+        id_goods = #{idGoods,jdbcType=CHAR},
+      </if>
+      <if test="idUser != null">
+        id_user = #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isNew != null">
+        is_new = #{isNew,jdbcType=INTEGER},
+      </if>
+      <if test="goodsLocation != null">
+        goods_location = #{goodsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCategory != null">
+        goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImages != null">
+        goods_images = #{goodsImages,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImage != null">
+        main_image = #{mainImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDes != null">
+        goods_des = #{goodsDes,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="collected != null">
+        collected = #{collected,jdbcType=INTEGER},
+      </if>
+      <if test="browsed != null">
+        browsed = #{browsed,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="lever != null">
+        lever = #{lever,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsInf != null">
+        goods_inf = #{goodsInf,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="atlan.ceer.pojo.Goods">
+    update goods
+    set id_goods = #{idGoods,jdbcType=CHAR},
+      id_user = #{idUser,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      is_new = #{isNew,jdbcType=INTEGER},
+      goods_location = #{goodsLocation,jdbcType=VARCHAR},
+      goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      goods_images = #{goodsImages,jdbcType=VARCHAR},
+      main_image = #{mainImage,jdbcType=VARCHAR},
+      goods_des = #{goodsDes,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      collected = #{collected,jdbcType=INTEGER},
+      browsed = #{browsed,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      tag = #{tag,jdbcType=VARCHAR},
+      lever = #{lever,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      goods_inf = #{goodsInf,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="atlan.ceer.pojo.Goods">
+    update goods
+    set id_goods = #{idGoods,jdbcType=CHAR},
+      id_user = #{idUser,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DECIMAL},
+      is_new = #{isNew,jdbcType=INTEGER},
+      goods_location = #{goodsLocation,jdbcType=VARCHAR},
+      goods_category = #{goodsCategory,jdbcType=VARCHAR},
+      goods_images = #{goodsImages,jdbcType=VARCHAR},
+      main_image = #{mainImage,jdbcType=VARCHAR},
+      goods_des = #{goodsDes,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      collected = #{collected,jdbcType=INTEGER},
+      browsed = #{browsed,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      tag = #{tag,jdbcType=VARCHAR},
+      lever = #{lever,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

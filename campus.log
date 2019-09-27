@@ -1,0 +1,57 @@
+2019-09-14 12:38:40.574  WARN 884 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/F:/mytools/maven/maven-repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/F:/mytools/maven/maven-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-09-14 12:38:40.954  INFO 884 --- [main] atlan.ceer.CampusBootApplicationTests    : Starting CampusBootApplicationTests on ²à¶úÇãÌý with PID 884 (started by lenovo in F:\mytools\IntelliJ\workplace\campus_boot)
+2019-09-14 12:38:40.956  INFO 884 --- [main] atlan.ceer.CampusBootApplicationTests    : No active profile set, falling back to default profiles: default
+2019-09-14 12:38:47.522  INFO 884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-09-14 12:38:47.553  INFO 884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-14 12:38:47.925  INFO 884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 158ms. Found 0 repository interfaces.
+2019-09-14 12:38:49.623  INFO 884 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$b06fc3f7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-14 12:38:54.527  INFO 884 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-14 12:38:56.993  INFO 884 --- [main] atlan.ceer.CampusBootApplicationTests    : Started CampusBootApplicationTests in 19.332 seconds (JVM running for 23.372)
+2019-09-14 12:38:57.783  INFO 884 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-14 12:38:57.786  INFO 884 --- [Thread-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
+2019-09-14 13:19:35.230  WARN 2092 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/F:/mytools/maven/maven-repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/F:/mytools/maven/maven-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-09-14 13:19:35.267  INFO 2092 --- [main] atlan.ceer.CampusBootApplicationTests    : Starting CampusBootApplicationTests on ²à¶úÇãÌý with PID 2092 (started by lenovo in F:\mytools\IntelliJ\workplace\campus_boot)
+2019-09-14 13:19:35.268  INFO 2092 --- [main] atlan.ceer.CampusBootApplicationTests    : No active profile set, falling back to default profiles: default
+2019-09-14 13:19:37.449  INFO 2092 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-09-14 13:19:37.454  INFO 2092 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-14 13:19:37.522  INFO 2092 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45ms. Found 0 repository interfaces.
+2019-09-14 13:19:38.557  INFO 2092 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e85bc466] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-14 13:19:40.974  INFO 2092 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-14 13:19:42.541  INFO 2092 --- [main] atlan.ceer.CampusBootApplicationTests    : Started CampusBootApplicationTests in 8.015 seconds (JVM running for 9.518)
+2019-09-14 13:19:43.096  INFO 2092 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-14 13:19:43.099  INFO 2092 --- [Thread-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
+2019-09-14 13:31:42.038  WARN 12764 --- [main] ory$DuplicateJsonObjectContextCustomizer : 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/F:/mytools/maven/maven-repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/F:/mytools/maven/maven-repository/org/json/json/20170516/json-20170516.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+2019-09-14 13:31:42.076  INFO 12764 --- [main] atlan.ceer.CampusBootApplicationTests    : Starting CampusBootApplicationTests on ²à¶úÇãÌý with PID 12764 (started by lenovo in F:\mytools\IntelliJ\workplace\campus_boot)
+2019-09-14 13:31:42.080  INFO 12764 --- [main] atlan.ceer.CampusBootApplicationTests    : No active profile set, falling back to default profiles: default
+2019-09-14 13:31:43.541  INFO 12764 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2019-09-14 13:31:43.544  INFO 12764 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-14 13:31:43.602  INFO 12764 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37ms. Found 0 repository interfaces.
+2019-09-14 13:31:44.410  INFO 12764 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$64c40b86] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-14 13:31:46.683  INFO 12764 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-14 13:31:48.077  INFO 12764 --- [main] atlan.ceer.CampusBootApplicationTests    : Started CampusBootApplicationTests in 6.732 seconds (JVM running for 8.131)
+2019-09-14 13:31:48.571  INFO 12764 --- [Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-14 13:31:48.572  INFO 12764 --- [Thread-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...

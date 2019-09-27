@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atlan.ceer.mapper.UserInfMapper">
+  <resultMap id="BaseResultMap" type="atlan.ceer.pojo.UserInf">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_user" jdbcType="VARCHAR" property="idUser" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="collect_goods" jdbcType="INTEGER" property="collectGoods" />
+    <result column="collect_post" jdbcType="INTEGER" property="collectPost" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="count_goods" jdbcType="INTEGER" property="countGoods" />
+    <result column="count_needs" jdbcType="INTEGER" property="countNeeds" />
+    <result column="count_like" jdbcType="INTEGER" property="countLike" />
+    <result column="count_post" jdbcType="INTEGER" property="countPost" />
+    <result column="count_follow" jdbcType="INTEGER" property="countFollow" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="count_fans" jdbcType="INTEGER" property="countFans" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="atlan.ceer.pojo.UserInf">
+    <result column="record" jdbcType="LONGVARCHAR" property="record" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, id_user, avatar, signature, collect_goods, collect_post, location, school, birthday, 
+    sex, count_goods, count_needs, count_like, count_post, count_follow, gmt_create, 
+    gmt_modified, count_fans
+  </sql>
+  <sql id="Blob_Column_List">
+    record
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="atlan.ceer.pojo.UserInfExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_inf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="atlan.ceer.pojo.UserInfExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_inf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_inf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_inf
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="atlan.ceer.pojo.UserInfExample">
+    delete from user_inf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="atlan.ceer.pojo.UserInf">
+    insert into user_inf (id, id_user, avatar, 
+      signature, collect_goods, collect_post, 
+      location, school, birthday, 
+      sex, count_goods, count_needs, 
+      count_like, count_post, count_follow, 
+      gmt_create, gmt_modified, count_fans, 
+      record)
+    values (#{id,jdbcType=INTEGER}, #{idUser,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{collectGoods,jdbcType=INTEGER}, #{collectPost,jdbcType=INTEGER}, 
+      #{location,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{countGoods,jdbcType=INTEGER}, #{countNeeds,jdbcType=INTEGER}, 
+      #{countLike,jdbcType=INTEGER}, #{countPost,jdbcType=INTEGER}, #{countFollow,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{countFans,jdbcType=INTEGER}, 
+      #{record,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="atlan.ceer.pojo.UserInf">
+    insert into user_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idUser != null">
+        id_user,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="collectGoods != null">
+        collect_goods,
+      </if>
+      <if test="collectPost != null">
+        collect_post,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="countGoods != null">
+        count_goods,
+      </if>
+      <if test="countNeeds != null">
+        count_needs,
+      </if>
+      <if test="countLike != null">
+        count_like,
+      </if>
+      <if test="countPost != null">
+        count_post,
+      </if>
+      <if test="countFollow != null">
+        count_follow,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="countFans != null">
+        count_fans,
+      </if>
+      <if test="record != null">
+        record,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idUser != null">
+        #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="collectGoods != null">
+        #{collectGoods,jdbcType=INTEGER},
+      </if>
+      <if test="collectPost != null">
+        #{collectPost,jdbcType=INTEGER},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="countGoods != null">
+        #{countGoods,jdbcType=INTEGER},
+      </if>
+      <if test="countNeeds != null">
+        #{countNeeds,jdbcType=INTEGER},
+      </if>
+      <if test="countLike != null">
+        #{countLike,jdbcType=INTEGER},
+      </if>
+      <if test="countPost != null">
+        #{countPost,jdbcType=INTEGER},
+      </if>
+      <if test="countFollow != null">
+        #{countFollow,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countFans != null">
+        #{countFans,jdbcType=INTEGER},
+      </if>
+      <if test="record != null">
+        #{record,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="atlan.ceer.pojo.UserInfExample" resultType="java.lang.Long">
+    select count(*) from user_inf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_inf
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.idUser != null">
+        id_user = #{record.idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatar != null">
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signature != null">
+        signature = #{record.signature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collectGoods != null">
+        collect_goods = #{record.collectGoods,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectPost != null">
+        collect_post = #{record.collectPost,jdbcType=INTEGER},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countGoods != null">
+        count_goods = #{record.countGoods,jdbcType=INTEGER},
+      </if>
+      <if test="record.countNeeds != null">
+        count_needs = #{record.countNeeds,jdbcType=INTEGER},
+      </if>
+      <if test="record.countLike != null">
+        count_like = #{record.countLike,jdbcType=INTEGER},
+      </if>
+      <if test="record.countPost != null">
+        count_post = #{record.countPost,jdbcType=INTEGER},
+      </if>
+      <if test="record.countFollow != null">
+        count_follow = #{record.countFollow,jdbcType=INTEGER},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.countFans != null">
+        count_fans = #{record.countFans,jdbcType=INTEGER},
+      </if>
+      <if test="record.record != null">
+        record = #{record.record,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update user_inf
+    set id = #{record.id,jdbcType=INTEGER},
+      id_user = #{record.idUser,jdbcType=VARCHAR},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      signature = #{record.signature,jdbcType=VARCHAR},
+      collect_goods = #{record.collectGoods,jdbcType=INTEGER},
+      collect_post = #{record.collectPost,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      count_goods = #{record.countGoods,jdbcType=INTEGER},
+      count_needs = #{record.countNeeds,jdbcType=INTEGER},
+      count_like = #{record.countLike,jdbcType=INTEGER},
+      count_post = #{record.countPost,jdbcType=INTEGER},
+      count_follow = #{record.countFollow,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      count_fans = #{record.countFans,jdbcType=INTEGER},
+      record = #{record.record,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_inf
+    set id = #{record.id,jdbcType=INTEGER},
+      id_user = #{record.idUser,jdbcType=VARCHAR},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      signature = #{record.signature,jdbcType=VARCHAR},
+      collect_goods = #{record.collectGoods,jdbcType=INTEGER},
+      collect_post = #{record.collectPost,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      school = #{record.school,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      count_goods = #{record.countGoods,jdbcType=INTEGER},
+      count_needs = #{record.countNeeds,jdbcType=INTEGER},
+      count_like = #{record.countLike,jdbcType=INTEGER},
+      count_post = #{record.countPost,jdbcType=INTEGER},
+      count_follow = #{record.countFollow,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      count_fans = #{record.countFans,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="atlan.ceer.pojo.UserInf">
+    update user_inf
+    <set>
+      <if test="idUser != null">
+        id_user = #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="collectGoods != null">
+        collect_goods = #{collectGoods,jdbcType=INTEGER},
+      </if>
+      <if test="collectPost != null">
+        collect_post = #{collectPost,jdbcType=INTEGER},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="countGoods != null">
+        count_goods = #{countGoods,jdbcType=INTEGER},
+      </if>
+      <if test="countNeeds != null">
+        count_needs = #{countNeeds,jdbcType=INTEGER},
+      </if>
+      <if test="countLike != null">
+        count_like = #{countLike,jdbcType=INTEGER},
+      </if>
+      <if test="countPost != null">
+        count_post = #{countPost,jdbcType=INTEGER},
+      </if>
+      <if test="countFollow != null">
+        count_follow = #{countFollow,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countFans != null">
+        count_fans = #{countFans,jdbcType=INTEGER},
+      </if>
+      <if test="record != null">
+        record = #{record,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="atlan.ceer.pojo.UserInf">
+    update user_inf
+    set id_user = #{idUser,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      collect_goods = #{collectGoods,jdbcType=INTEGER},
+      collect_post = #{collectPost,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      count_goods = #{countGoods,jdbcType=INTEGER},
+      count_needs = #{countNeeds,jdbcType=INTEGER},
+      count_like = #{countLike,jdbcType=INTEGER},
+      count_post = #{countPost,jdbcType=INTEGER},
+      count_follow = #{countFollow,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      count_fans = #{countFans,jdbcType=INTEGER},
+      record = #{record,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="atlan.ceer.pojo.UserInf">
+    update user_inf
+    set id_user = #{idUser,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      collect_goods = #{collectGoods,jdbcType=INTEGER},
+      collect_post = #{collectPost,jdbcType=INTEGER},
+      location = #{location,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      count_goods = #{countGoods,jdbcType=INTEGER},
+      count_needs = #{countNeeds,jdbcType=INTEGER},
+      count_like = #{countLike,jdbcType=INTEGER},
+      count_post = #{countPost,jdbcType=INTEGER},
+      count_follow = #{countFollow,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      count_fans = #{countFans,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

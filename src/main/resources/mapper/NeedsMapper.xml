@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atlan.ceer.mapper.NeedsMapper">
+  <resultMap id="BaseResultMap" type="atlan.ceer.pojo.Needs">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="id_needs" jdbcType="CHAR" property="idNeeds" />
+    <result column="id_user" jdbcType="VARCHAR" property="idUser" />
+    <result column="needs_category" jdbcType="VARCHAR" property="needsCategory" />
+    <result column="needs_name" jdbcType="VARCHAR" property="needsName" />
+    <result column="needs_price" jdbcType="DECIMAL" property="needsPrice" />
+    <result column="needs_tip" jdbcType="DECIMAL" property="needsTip" />
+    <result column="needs_location" jdbcType="VARCHAR" property="needsLocation" />
+    <result column="collected" jdbcType="INTEGER" property="collected" />
+    <result column="browsed" jdbcType="INTEGER" property="browsed" />
+    <result column="lever" jdbcType="INTEGER" property="lever" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="atlan.ceer.pojo.Needs">
+    <result column="needs_inf" jdbcType="LONGVARCHAR" property="needsInf" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, id_needs, id_user, needs_category, needs_name, needs_price, needs_tip, needs_location, 
+    collected, browsed, lever, status, gmt_create, gmt_modified
+  </sql>
+  <sql id="Blob_Column_List">
+    needs_inf
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="atlan.ceer.pojo.NeedsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from needs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="atlan.ceer.pojo.NeedsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from needs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from needs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from needs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="atlan.ceer.pojo.NeedsExample">
+    delete from needs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="atlan.ceer.pojo.Needs">
+    insert into needs (id, id_needs, id_user, 
+      needs_category, needs_name, needs_price, 
+      needs_tip, needs_location, collected, 
+      browsed, lever, status, 
+      gmt_create, gmt_modified, needs_inf
+      )
+    values (#{id,jdbcType=INTEGER}, #{idNeeds,jdbcType=CHAR}, #{idUser,jdbcType=VARCHAR}, 
+      #{needsCategory,jdbcType=VARCHAR}, #{needsName,jdbcType=VARCHAR}, #{needsPrice,jdbcType=DECIMAL}, 
+      #{needsTip,jdbcType=DECIMAL}, #{needsLocation,jdbcType=VARCHAR}, #{collected,jdbcType=INTEGER}, 
+      #{browsed,jdbcType=INTEGER}, #{lever,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{needsInf,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="atlan.ceer.pojo.Needs">
+    insert into needs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idNeeds != null">
+        id_needs,
+      </if>
+      <if test="idUser != null">
+        id_user,
+      </if>
+      <if test="needsCategory != null">
+        needs_category,
+      </if>
+      <if test="needsName != null">
+        needs_name,
+      </if>
+      <if test="needsPrice != null">
+        needs_price,
+      </if>
+      <if test="needsTip != null">
+        needs_tip,
+      </if>
+      <if test="needsLocation != null">
+        needs_location,
+      </if>
+      <if test="collected != null">
+        collected,
+      </if>
+      <if test="browsed != null">
+        browsed,
+      </if>
+      <if test="lever != null">
+        lever,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="needsInf != null">
+        needs_inf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idNeeds != null">
+        #{idNeeds,jdbcType=CHAR},
+      </if>
+      <if test="idUser != null">
+        #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="needsCategory != null">
+        #{needsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="needsName != null">
+        #{needsName,jdbcType=VARCHAR},
+      </if>
+      <if test="needsPrice != null">
+        #{needsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="needsTip != null">
+        #{needsTip,jdbcType=DECIMAL},
+      </if>
+      <if test="needsLocation != null">
+        #{needsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="collected != null">
+        #{collected,jdbcType=INTEGER},
+      </if>
+      <if test="browsed != null">
+        #{browsed,jdbcType=INTEGER},
+      </if>
+      <if test="lever != null">
+        #{lever,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needsInf != null">
+        #{needsInf,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="atlan.ceer.pojo.NeedsExample" resultType="java.lang.Long">
+    select count(*) from needs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update needs
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.idNeeds != null">
+        id_needs = #{record.idNeeds,jdbcType=CHAR},
+      </if>
+      <if test="record.idUser != null">
+        id_user = #{record.idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needsCategory != null">
+        needs_category = #{record.needsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needsName != null">
+        needs_name = #{record.needsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.needsPrice != null">
+        needs_price = #{record.needsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.needsTip != null">
+        needs_tip = #{record.needsTip,jdbcType=DECIMAL},
+      </if>
+      <if test="record.needsLocation != null">
+        needs_location = #{record.needsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collected != null">
+        collected = #{record.collected,jdbcType=INTEGER},
+      </if>
+      <if test="record.browsed != null">
+        browsed = #{record.browsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.lever != null">
+        lever = #{record.lever,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.needsInf != null">
+        needs_inf = #{record.needsInf,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update needs
+    set id = #{record.id,jdbcType=INTEGER},
+      id_needs = #{record.idNeeds,jdbcType=CHAR},
+      id_user = #{record.idUser,jdbcType=VARCHAR},
+      needs_category = #{record.needsCategory,jdbcType=VARCHAR},
+      needs_name = #{record.needsName,jdbcType=VARCHAR},
+      needs_price = #{record.needsPrice,jdbcType=DECIMAL},
+      needs_tip = #{record.needsTip,jdbcType=DECIMAL},
+      needs_location = #{record.needsLocation,jdbcType=VARCHAR},
+      collected = #{record.collected,jdbcType=INTEGER},
+      browsed = #{record.browsed,jdbcType=INTEGER},
+      lever = #{record.lever,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      needs_inf = #{record.needsInf,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update needs
+    set id = #{record.id,jdbcType=INTEGER},
+      id_needs = #{record.idNeeds,jdbcType=CHAR},
+      id_user = #{record.idUser,jdbcType=VARCHAR},
+      needs_category = #{record.needsCategory,jdbcType=VARCHAR},
+      needs_name = #{record.needsName,jdbcType=VARCHAR},
+      needs_price = #{record.needsPrice,jdbcType=DECIMAL},
+      needs_tip = #{record.needsTip,jdbcType=DECIMAL},
+      needs_location = #{record.needsLocation,jdbcType=VARCHAR},
+      collected = #{record.collected,jdbcType=INTEGER},
+      browsed = #{record.browsed,jdbcType=INTEGER},
+      lever = #{record.lever,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="atlan.ceer.pojo.Needs">
+    update needs
+    <set>
+      <if test="idNeeds != null">
+        id_needs = #{idNeeds,jdbcType=CHAR},
+      </if>
+      <if test="idUser != null">
+        id_user = #{idUser,jdbcType=VARCHAR},
+      </if>
+      <if test="needsCategory != null">
+        needs_category = #{needsCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="needsName != null">
+        needs_name = #{needsName,jdbcType=VARCHAR},
+      </if>
+      <if test="needsPrice != null">
+        needs_price = #{needsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="needsTip != null">
+        needs_tip = #{needsTip,jdbcType=DECIMAL},
+      </if>
+      <if test="needsLocation != null">
+        needs_location = #{needsLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="collected != null">
+        collected = #{collected,jdbcType=INTEGER},
+      </if>
+      <if test="browsed != null">
+        browsed = #{browsed,jdbcType=INTEGER},
+      </if>
+      <if test="lever != null">
+        lever = #{lever,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needsInf != null">
+        needs_inf = #{needsInf,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="atlan.ceer.pojo.Needs">
+    update needs
+    set id_needs = #{idNeeds,jdbcType=CHAR},
+      id_user = #{idUser,jdbcType=VARCHAR},
+      needs_category = #{needsCategory,jdbcType=VARCHAR},
+      needs_name = #{needsName,jdbcType=VARCHAR},
+      needs_price = #{needsPrice,jdbcType=DECIMAL},
+      needs_tip = #{needsTip,jdbcType=DECIMAL},
+      needs_location = #{needsLocation,jdbcType=VARCHAR},
+      collected = #{collected,jdbcType=INTEGER},
+      browsed = #{browsed,jdbcType=INTEGER},
+      lever = #{lever,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      needs_inf = #{needsInf,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="atlan.ceer.pojo.Needs">
+    update needs
+    set id_needs = #{idNeeds,jdbcType=CHAR},
+      id_user = #{idUser,jdbcType=VARCHAR},
+      needs_category = #{needsCategory,jdbcType=VARCHAR},
+      needs_name = #{needsName,jdbcType=VARCHAR},
+      needs_price = #{needsPrice,jdbcType=DECIMAL},
+      needs_tip = #{needsTip,jdbcType=DECIMAL},
+      needs_location = #{needsLocation,jdbcType=VARCHAR},
+      collected = #{collected,jdbcType=INTEGER},
+      browsed = #{browsed,jdbcType=INTEGER},
+      lever = #{lever,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

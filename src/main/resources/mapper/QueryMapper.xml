@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="atlan.ceer.mapper.QueryMapper">
+    <select id="queryGoodsList" parameterType="int" resultType="atlan.ceer.model.SimpleGoods">
+        select goods.id_user, id_goods, goods_name, goods_inf, goods_price, is_new, main_image, goods.goods_location, tag, goods.collected, browsed, user_name, avatar, goods.gmt_create, goods.gmt_modified
+        from goods
+        left join user on goods.id_user = user.id_user
+        left join user_inf on goods.id_user = user_inf.id_user
+        <where>
+            <if test="location!=null">and goodses.location=#{location}</if>
+            <if test="tag!=null">and tag=#{tag}</if>
+        </where>
+        ORDER BY goods.gmt_modified desc
+        limit #{page},20
+    </select>
+    <select id="queryUserInfAll" parameterType="String" resultType="atlan.ceer.model.UserInfAll">
+        select user.id_user,avatar,user_name,phone,email,signature,collect_goods,collect_post,location,school,birthday,sex,count_goods,count_needs,count_like,count_post,count_follow,user_inf.gmt_create,user_inf.gmt_modified,count_fans,record, student_num
+        from user_inf
+        left join user on user_inf.id_user=user.id_user
+        where user.id_user=#{userId}
+    </select>
+    <select id="queryGoodsInfAll" parameterType="string" resultType="atlan.ceer.model.GoodsInfAll">
+        select id_goods, goods.id_user, goods_name, user_name, avatar, goods_price, is_new, goods_location, goods_category, goods_images, main_image, goods_des, goods.address, collected, browsed, goods.status, tag, goods.gmt_create, goods.gmt_modified, goods_inf
+        from goods
+        left join user on goods.id_user = user.id_user
+        left join user_inf on goods.id_user = user_inf.id_user
+        where goods.id_goods=#{goodsId}
+    </select>
+    <select id="queryNeedsInfList" parameterType="hashmap" resultType="atlan.ceer.model.NeedsInfAll">
+        select needsid,needs.userid,username,avatar,goodsname,information,price,tip,needs.location,needs.collect,browse,needs.createtime,needs.status
+        from needs
+        left join user on needs.userid=user.userid
+        left join userinf on needs.userid=userinf.userid
+        <where>
+            <if test="location!=null">and needs.location=#{location}</if>
+        </where>
+        ORDER BY needs.createtime desc
+        limit #{page},20
+    </select>
+    <select id="queryNeedsInf" parameterType="String" resultType="atlan.ceer.model.NeedsInfAll">
+        select needsid,needs.userid,username,avatar,goodsname,information,price,tip,needs.location,needs.collect,browse,needs.createtime,needs.status
+        from needs
+        left join user on needs.userid=user.userid
+        left join userinf on needs.userid=userinf.userid
+        where needs.needsid=#{needsid}
+    </select>
+</mapper>
